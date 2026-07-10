@@ -1,0 +1,680 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neel Prajapati | Impactful Visual Resume</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            600: '#6d28d9',
+                            700: '#5b21b6',
+                            900: '#4c1d95',
+                        },
+                        accent: {
+                            50: '#f0fdfa',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* Custom print styling to transform dashboard into a flawless 2-page traditional resume */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+                font-size: 11pt !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-full-width {
+                width: 100% !important;
+                max-width: 100% !important;
+                display: block !important;
+            }
+            .print-grid {
+                display: grid !important;
+                grid-template-columns: 1fr 2fr !important;
+                gap: 1.5rem !important;
+            }
+            .shadow-lg, .shadow-md, .shadow-sm {
+                box-shadow: none !important;
+            }
+            .rounded-2xl, .rounded-xl {
+                border-radius: 0px !important;
+            }
+            .border {
+                border-color: #e2e8f0 !important;
+            }
+            a {
+                text-decoration: underline !important;
+                color: black !important;
+            }
+        }
+        /* Custom subtle animations */
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen selection:bg-primary-100 dark:selection:bg-primary-900 transition-colors duration-300">
+
+    <!-- Header / Navigation Bar -->
+    <nav class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors no-print">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <span class="bg-gradient-to-r from-primary-600 to-accent-600 text-white font-extrabold px-3 py-1.5 rounded-lg text-sm tracking-wide">NP</span>
+                    <span class="font-bold text-lg tracking-tight text-slate-900 dark:text-white">Neel Prajapati</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- Quick action buttons -->
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none transition-colors" title="Toggle dark/light mode">
+                        <i data-lucide="sun" id="sun-icon" class="hidden h-5 w-5"></i>
+                        <i data-lucide="moon" id="moon-icon" class="h-5 w-5"></i>
+                    </button>
+                    <button onclick="window.print()" class="flex items-center space-x-1.5 bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-all duration-150 shadow-md shadow-primary-600/10 hover:shadow-primary-600/20">
+                        <i data-lucide="printer" class="h-4 w-4"></i>
+                        <span>Print / Export PDF</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Custom Success Toast (Non-blocking replacement for alert) -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-3 rounded-xl shadow-xl flex items-center space-x-3">
+        <span class="bg-accent-500 rounded-full p-1 text-white">
+            <i data-lucide="check" class="h-4 w-4"></i>
+        </span>
+        <span id="toast-message" class="text-sm font-medium">Link copied to clipboard!</span>
+    </div>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Hero Section / Core Bio Card -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-6 md:p-8 shadow-xl shadow-slate-100/50 dark:shadow-none mb-8 fade-in-up">
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+                <!-- Main details -->
+                <div class="space-y-4 max-w-3xl">
+                    <div class="inline-flex items-center gap-2 bg-primary-50 dark:bg-primary-950/40 text-primary-600 dark:text-primary-400 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
+                        <i data-lucide="award" class="h-3.5 w-3.5"></i> IIT Hyderabad Undergraduate
+                    </div>
+                    <div>
+                        <h1 class="text-3xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
+                            NEEL PRAJAPATI
+                        </h1>
+                        <p class="text-lg md:text-xl font-medium text-slate-600 dark:text-slate-300 mt-2">
+                            Technical Literacy $\times$ Social Development $\times$ Global Relations
+                        </p>
+                    </div>
+                    
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+                        An impactful and highly articulate B.Tech student from <strong class="text-slate-800 dark:text-white font-semibold">IIT Hyderabad</strong> with a unique blend of technical literacy, global stakeholder management, and a deep-rooted commitment to social development. Proven track record of leading large-scale community initiatives through NSS and facilitating international corporate collaborations. Possesses exceptional communication skills, sharp attention to detail, and a strong interest in driving technology adoption in rural spaces.
+                    </p>
+
+                    <!-- Interactive Quick Stats Row -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-slate-100 dark:border-slate-800/80">
+                        <div class="p-3 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-slate-100 dark:border-slate-800">
+                            <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider">CGPA</span>
+                            <span class="text-xl font-extrabold text-primary-600 dark:text-primary-400">8.73 / 10</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-slate-100 dark:border-slate-800">
+                            <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider">JEE Main Rank</span>
+                            <span class="text-xl font-extrabold text-teal-600 dark:text-teal-400">AIR 834</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-slate-100 dark:border-slate-800">
+                            <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Impacted (NSS)</span>
+                            <span class="text-xl font-extrabold text-indigo-600 dark:text-indigo-400">1,000+ Students</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 dark:bg-slate-800/40 rounded-xl border border-slate-100 dark:border-slate-800">
+                            <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider">Global Reach</span>
+                            <span class="text-xl font-extrabold text-amber-600 dark:text-amber-400">IRC Coordinator</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact & Social Cards Panel -->
+                <div class="w-full md:w-auto bg-slate-50 dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 p-5 rounded-2xl md:min-w-[280px] space-y-4">
+                    <h3 class="font-bold text-sm text-slate-400 uppercase tracking-wider">Get in Touch</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-white dark:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400 shadow-sm">
+                                <i data-lucide="map-pin" class="h-4 w-4"></i>
+                            </div>
+                            <span>Sangareddy, Telangana, India</span>
+                        </div>
+                        <div onclick="copyText('+918247207978', 'Phone number')" class="flex items-center gap-3 cursor-pointer group hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            <div class="p-2 bg-white dark:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400 group-hover:text-primary-600 shadow-sm">
+                                <i data-lucide="phone" class="h-4 w-4"></i>
+                            </div>
+                            <span class="font-mono">+91 8247207978</span>
+                        </div>
+                        <div onclick="copyText('me23btech11040@iith.ac.in', 'Email address')" class="flex items-center gap-3 cursor-pointer group hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            <div class="p-2 bg-white dark:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400 group-hover:text-primary-600 shadow-sm">
+                                <i data-lucide="mail" class="h-4 w-4"></i>
+                            </div>
+                            <span class="break-all font-mono">me23btech11040@iith.ac.in</span>
+                        </div>
+                        <a href="https://linkedin.com/in/neel-prajapati" target="_blank" class="flex items-center gap-3 group hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            <div class="p-2 bg-white dark:bg-slate-800 rounded-lg text-slate-600 dark:text-slate-400 group-hover:text-primary-600 shadow-sm">
+                                <i data-lucide="linkedin" class="h-4 w-4"></i>
+                            </div>
+                            <span class="font-mono">linkedin.com/in/neel-prajapati</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TWO COLUMN LAYOUT: Content Panel & Sidebar -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 print-grid">
+            
+            <!-- LEFT SIDEBAR: Education, Skills Matrix, Scholastic Honors -->
+            <div class="space-y-8 lg:col-span-1">
+                
+                <!-- Education Card -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="p-2 bg-primary-100 dark:bg-primary-950/50 rounded-lg text-primary-600">
+                            <i data-lucide="graduation-cap" class="h-5 w-5"></i>
+                        </div>
+                        <h2 class="text-xl font-bold tracking-tight">Education</h2>
+                    </div>
+                    <div class="space-y-6">
+                        <!-- IIT Hyderabad -->
+                        <div class="relative pl-4 border-l-2 border-primary-500">
+                            <div class="absolute -left-[6px] top-1.5 h-2.5 w-2.5 rounded-full bg-primary-500"></div>
+                            <h3 class="font-bold text-slate-900 dark:text-white leading-tight">IIT Hyderabad</h3>
+                            <p class="text-xs text-primary-600 dark:text-primary-400 font-semibold mt-0.5">B.Tech | Mech & Aerospace</p>
+                            <div class="flex justify-between items-center mt-1 text-xs text-slate-400">
+                                <span>Graduation: 2027</span>
+                                <span class="bg-primary-50 dark:bg-primary-950/40 text-primary-600 font-semibold px-2 py-0.5 rounded">CGPA: 8.73/10</span>
+                            </div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+                                <strong class="font-semibold text-slate-600 dark:text-slate-300">Relevant Coursework:</strong> Communication Skills, Personality Development, Psychology of Well Being
+                            </p>
+                        </div>
+                        <!-- Class XII -->
+                        <div class="relative pl-4 border-l-2 border-slate-200 dark:border-slate-800">
+                            <h3 class="font-bold text-slate-800 dark:text-slate-200 leading-tight">Saraswati Vidhyalay</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Class XII | GSHSEB (2023)</p>
+                            <p class="text-xs font-semibold text-slate-600 dark:text-slate-400 mt-1">Score: 75.00%</p>
+                        </div>
+                        <!-- Class X -->
+                        <div class="relative pl-4 border-l-2 border-slate-200 dark:border-slate-800">
+                            <h3 class="font-bold text-slate-800 dark:text-slate-200 leading-tight">DRGD (Govt) School</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Class X | GSEB (2021)</p>
+                            <p class="text-xs font-semibold text-slate-600 dark:text-slate-400 mt-1">Score: 96.00%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills Matrix (With Category Filtering Toggle) -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+                    <div class="flex items-center justify-between mb-5">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2 bg-accent-100 dark:bg-accent-950/50 rounded-lg text-accent-600">
+                                <i data-lucide="sliders" class="h-5 w-5"></i>
+                            </div>
+                            <h2 class="text-xl font-bold tracking-tight">Skills Matrix</h2>
+                        </div>
+                    </div>
+
+                    <!-- Filter Tabs -->
+                    <div class="flex flex-wrap gap-1.5 mb-4 no-print">
+                        <button onclick="filterSkills('all')" id="tab-all" class="text-xs px-2.5 py-1 rounded-full font-medium transition-colors bg-primary-600 text-white">
+                            All
+                        </button>
+                        <button onclick="filterSkills('pr')" id="tab-pr" class="text-xs px-2.5 py-1 rounded-full font-medium transition-colors bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700">
+                            PR & Comm
+                        </button>
+                        <button onclick="filterSkills('tech')" id="tab-tech" class="text-xs px-2.5 py-1 rounded-full font-medium transition-colors bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700">
+                            Tech & Dev
+                        </button>
+                        <button onclick="filterSkills('core')" id="tab-core" class="text-xs px-2.5 py-1 rounded-full font-medium transition-colors bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700">
+                            Core
+                        </button>
+                    </div>
+
+                    <!-- Skills Tags container -->
+                    <div class="space-y-4">
+                        <!-- PR & Comm -->
+                        <div class="skill-category" data-cat="pr">
+                            <span class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-2">PR & Communications</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 text-xs px-2.5 py-1 rounded-lg border border-indigo-100 dark:border-indigo-900/50">Strategic Messaging</span>
+                                <span class="bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 text-xs px-2.5 py-1 rounded-lg border border-indigo-100 dark:border-indigo-900/50">Campaign Comms</span>
+                                <span class="bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 text-xs px-2.5 py-1 rounded-lg border border-indigo-100 dark:border-indigo-900/50">Cross-Cultural Relations</span>
+                                <span class="bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 text-xs px-2.5 py-1 rounded-lg border border-indigo-100 dark:border-indigo-900/50">Public Speaking</span>
+                                <span class="bg-indigo-50 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 text-xs px-2.5 py-1 rounded-lg border border-indigo-100 dark:border-indigo-900/50">Event Organizing</span>
+                            </div>
+                        </div>
+
+                        <!-- Technical & Tools -->
+                        <div class="skill-category" data-cat="tech">
+                            <span class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-2">Digital & Tools</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 text-xs px-2.5 py-1 rounded-lg border border-teal-100 dark:border-teal-900/50 font-mono">HTML/CSS</span>
+                                <span class="bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 text-xs px-2.5 py-1 rounded-lg border border-teal-100 dark:border-teal-900/50 font-mono">Python</span>
+                                <span class="bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 text-xs px-2.5 py-1 rounded-lg border border-teal-100 dark:border-teal-900/50 font-mono">C/C++</span>
+                                <span class="bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 text-xs px-2.5 py-1 rounded-lg border border-teal-100 dark:border-teal-900/50 font-mono">MATLAB</span>
+                                <span class="bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 text-xs px-2.5 py-1 rounded-lg border border-teal-100 dark:border-teal-900/50 font-mono">Git/VSCode</span>
+                                <span class="bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 text-xs px-2.5 py-1 rounded-lg border border-teal-100 dark:border-teal-900/50 font-mono">Workspace</span>
+                            </div>
+                        </div>
+
+                        <!-- Core Competencies -->
+                        <div class="skill-category" data-cat="core">
+                            <span class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block mb-2">Core Competencies</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700">Stakeholder Management</span>
+                                <span class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700">Budget Management</span>
+                                <span class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700">Global Outreach</span>
+                                <span class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700">High Attention to Detail</span>
+                                <span class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700">Logistics</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scholastic Accomplishments -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-6 shadow-md transition-all duration-300 hover:shadow-lg">
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="p-2 bg-amber-100 dark:bg-amber-950/50 rounded-lg text-amber-600">
+                            <i data-lucide="trophy" class="h-5 w-5"></i>
+                        </div>
+                        <h2 class="text-xl font-bold tracking-tight">Scholastic Honors</h2>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex gap-3">
+                            <span class="text-amber-500 font-extrabold text-sm min-w-[32px] mt-0.5">#834</span>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-850 dark:text-white leading-tight">JEE Main 2023</h4>
+                                <p class="text-xs text-slate-500">All India Rank (OBC) out of 1.1M candidates</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-amber-500 font-extrabold text-sm min-w-[32px] mt-0.5">#2k</span>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-850 dark:text-white leading-tight">JEE Advanced 2023</h4>
+                                <p class="text-xs text-slate-500">All India Rank (OBC) out of 180k elite takers</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-amber-500 font-bold text-sm min-w-[32px] mt-0.5"><i data-lucide="award" class="h-4 w-4"></i></span>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-850 dark:text-white leading-tight">NTSE Scholar</h4>
+                                <p class="text-xs text-slate-500">Recognized as national scholar (Stage 1 & 2)</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- RIGHT MAIN PANEL: Experience, Projects, Recruiter Chat -->
+            <div class="space-y-8 lg:col-span-2">
+                
+                <!-- Experience Segment -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-6 md:p-8 shadow-md">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="p-2 bg-primary-100 dark:bg-primary-950/50 rounded-lg text-primary-600">
+                            <i data-lucide="briefcase" class="h-5 w-5"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold tracking-tight">Leadership & Social Impact</h2>
+                    </div>
+
+                    <!-- Timeline -->
+                    <div class="space-y-8 relative before:absolute before:inset-0 before:left-[19px] before:w-0.5 before:bg-slate-100 dark:before:bg-slate-800">
+                        
+                        <!-- NSS IIT Hyderabad -->
+                        <div class="relative pl-10 md:pl-12 group">
+                            <!-- Icon/Marker -->
+                            <div class="absolute left-0 top-1.5 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 dark:border-slate-700 dark:bg-slate-900 shadow-sm group-hover:border-primary-500 group-hover:text-primary-600 transition-colors duration-200">
+                                <i data-lucide="users" class="h-5 w-5"></i>
+                            </div>
+                            <!-- Card Content -->
+                            <div class="space-y-2">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between">
+                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Student Representative</h3>
+                                    <span class="text-xs font-semibold text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40 px-2.5 py-1 rounded-full w-fit mt-1 md:mt-0">2024 – Present (2+ Years)</span>
+                                </div>
+                                <h4 class="text-sm font-semibold text-slate-500 dark:text-slate-400">NSS IIT Hyderabad</h4>
+                                <ul class="list-none space-y-2 text-sm text-slate-600 dark:text-slate-400 pl-0 mt-3">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent-500 mt-1">&#9670;</span>
+                                        <span><strong class="text-slate-800 dark:text-slate-200">Social Impact Leadership:</strong> Led grassroots initiatives impacting over 1,000 students; organized programs like Vidhyadaan, Margdarshan, orphanage visits, and Clean India drives.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent-500 mt-1">&#9670;</span>
+                                        <span><strong class="text-slate-800 dark:text-slate-200">Strategic Event Management:</strong> Spearheaded end-to-end event planning, publicity, and execution for high-profile EBSB events with thousands of attendees.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent-500 mt-1">&#9670;</span>
+                                        <span><strong class="text-slate-800 dark:text-slate-200">Logistics & Budgeting:</strong> Managed complex budgets and logistics across multiple on-and-off-campus hardware and venue distributions.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- International Relations Cell -->
+                        <div class="relative pl-10 md:pl-12 group">
+                            <!-- Icon/Marker -->
+                            <div class="absolute left-0 top-1.5 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 dark:border-slate-700 dark:bg-slate-900 shadow-sm group-hover:border-primary-500 group-hover:text-primary-600 transition-colors duration-200">
+                                <i data-lucide="globe" class="h-5 w-5"></i>
+                            </div>
+                            <!-- Card Content -->
+                            <div class="space-y-2">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between">
+                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Coordinator</h3>
+                                    <span class="text-xs font-semibold text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/40 px-2.5 py-1 rounded-full w-fit mt-1 md:mt-0">2024 – Present</span>
+                                </div>
+                                <h4 class="text-sm font-semibold text-slate-500 dark:text-slate-400">International Relations Cell, IIT Hyderabad</h4>
+                                <ul class="list-none space-y-2 text-sm text-slate-600 dark:text-slate-400 pl-0 mt-3">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent-500 mt-1">&#9670;</span>
+                                        <span><strong class="text-slate-800 dark:text-slate-200">Global Relations:</strong> Promoted institutional relations worldwide, actively acting as the student face of global outreach.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent-500 mt-1">&#9670;</span>
+                                        <span><strong class="text-slate-800 dark:text-slate-200">Corporate Liaison:</strong> Managed relationships with high-profile corporate delegates, specifically bridgeheads for Japanese firm partnerships and visiting professors.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Projects -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-6 md:p-8 shadow-md">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="p-2 bg-primary-100 dark:bg-primary-950/50 rounded-lg text-primary-600">
+                            <i data-lucide="code-2" class="h-5 w-5"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold tracking-tight">Technical Projects</h2>
+                    </div>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                        Demonstrating the absolute technological and programmatic literacy required to adapt digital solutions and explain them confidently to stakeholders.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <!-- Project 1 -->
+                        <div class="border border-slate-200 dark:border-slate-800 rounded-xl p-5 hover:border-primary-500/50 transition-all duration-300 bg-slate-50/50 dark:bg-slate-900/50 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-mono font-bold text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/40 px-2.5 py-0.5 rounded-full">C++ & OOP</span>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-3 mb-2">Phonebook Management</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    Developed structured database system in C++ implementing <code>fstream</code> & <code>sstream</code> for persistent local storage, emphasizing UI clarity and file hierarchy.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Project 2 -->
+                        <div class="border border-slate-200 dark:border-slate-800 rounded-xl p-5 hover:border-primary-500/50 transition-all duration-300 bg-slate-50/50 dark:bg-slate-900/50 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-mono font-bold text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/40 px-2.5 py-0.5 rounded-full">C++ & Logic</span>
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-3 mb-2">Minesweeper Game</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                    C++ gameplay engine utilizing programmatic recursion and advanced dynamic memory architectures to build a responsive terminal application.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recruiter Quick Q&A Interactive Component (Digistall PR Focus) -->
+                <div class="bg-gradient-to-br from-primary-950 to-slate-900 text-white rounded-2xl p-6 md:p-8 border border-primary-900 shadow-xl relative overflow-hidden no-print">
+                    <!-- Background aesthetic flare -->
+                    <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-accent-600/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="absolute -left-20 -top-20 w-64 h-64 bg-primary-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div class="relative z-10">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="p-2 bg-primary-800/80 rounded-lg text-primary-200">
+                                <i data-lucide="sparkles" class="h-5 w-5"></i>
+                            </div>
+                            <h2 class="text-xl md:text-2xl font-bold tracking-tight">Ask Neel (Recruiter Assistant)</h2>
+                        </div>
+                        <p class="text-sm text-primary-200 mb-6">
+                            Are you looking to hire Neel for the Digistall Public Relations Internship? Tap any question below to see his tailored response!
+                        </p>
+
+                        <!-- Predefined Questions Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                            <button onclick="askQuestion('q1')" id="btn-q1" class="text-left bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-primary-500/50 text-slate-200 hover:text-white text-xs md:text-sm p-3.5 rounded-xl transition-all flex items-center justify-between">
+                                <span>Why fits Digistall's rural tech mission?</span>
+                                <i data-lucide="chevron-right" class="h-4 w-4 shrink-0 ml-2"></i>
+                            </button>
+                            <button onclick="askQuestion('q2')" id="btn-q2" class="text-left bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-primary-500/50 text-slate-200 hover:text-white text-xs md:text-sm p-3.5 rounded-xl transition-all flex items-center justify-between">
+                                <span>Tell me about your NSS leadership achievements.</span>
+                                <i data-lucide="chevron-right" class="h-4 w-4 shrink-0 ml-2"></i>
+                            </button>
+                            <button onclick="askQuestion('q3')" id="btn-q3" class="text-left bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-primary-500/50 text-slate-200 hover:text-white text-xs md:text-sm p-3.5 rounded-xl transition-all flex items-center justify-between">
+                                <span>How do you manage international clients?</span>
+                                <i data-lucide="chevron-right" class="h-4 w-4 shrink-0 ml-2"></i>
+                            </button>
+                            <button onclick="askQuestion('q4')" id="btn-q4" class="text-left bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-primary-500/50 text-slate-200 hover:text-white text-xs md:text-sm p-3.5 rounded-xl transition-all flex items-center justify-between">
+                                <span>What is your technical advantage in PR?</span>
+                                <i data-lucide="chevron-right" class="h-4 w-4 shrink-0 ml-2"></i>
+                            </button>
+                        </div>
+
+                        <!-- Chat Response Box -->
+                        <div id="answer-box" class="bg-slate-900/90 border border-primary-900 rounded-xl p-5 min-h-[120px] transition-all flex flex-col justify-center">
+                            <div id="placeholder-text" class="text-center text-slate-400 text-sm italic">
+                                Click a question above to instantly interview Neel...
+                            </div>
+                            <div id="actual-response" class="hidden text-sm space-y-3">
+                                <div class="flex items-center space-x-2 text-xs font-semibold text-accent-400">
+                                    <span class="bg-accent-500/20 px-2 py-0.5 rounded uppercase">Neel Prajapati</span>
+                                    <span>&middot; Interactive Assistant</span>
+                                </div>
+                                <p id="response-content" class="text-slate-100 leading-relaxed"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diversity & Community Contributions Card -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-6 md:p-8 shadow-md">
+                    <div class="flex items-center space-x-3 mb-5">
+                        <div class="p-2 bg-indigo-100 dark:bg-indigo-950/50 rounded-lg text-indigo-600">
+                            <i data-lucide="heart" class="h-5 w-5"></i>
+                        </div>
+                        <h2 class="text-xl font-bold tracking-tight">Diversity, Mentorship & Impact</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-2 text-primary-600 dark:text-primary-400">
+                                <i data-lucide="rainbow" class="h-4.5 w-4.5"></i>
+                                <h4 class="font-bold text-sm">Diversity & Inclusion</h4>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Active member of <strong class="text-slate-800 dark:text-slate-200">Qurve</strong>, championing inclusivity and empowering the LGBTQIA+ community across campus spaces.
+                            </p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-2 text-teal-600 dark:text-teal-400">
+                                <i data-lucide="user-check" class="h-4.5 w-4.5"></i>
+                                <h4 class="font-bold text-sm">Institute Mentorship</h4>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Formally selected to guide first-year undergraduates through academic, digital, and interpersonal transitions at IIT Hyderabad.
+                            </p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-2 text-amber-600 dark:text-amber-400">
+                                <i data-lucide="calendar" class="h-4.5 w-4.5"></i>
+                                <h4 class="font-bold text-sm">Department Day</h4>
+                            </div>
+                            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Organizer managing cross-tier logistics and communications seamlessly for thousands of UG, PG, PhD students, and faculty.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+    </main>
+
+    <!-- Footer segment -->
+    <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 mt-20 no-print">
+        <div class="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <p>&copy; 2026 Neel Prajapati. All rights reserved.</p>
+            <p>Designed as an impactful interactive visual resume &bull; Optimized for Print (CTRL+P to PDF)</p>
+        </div>
+    </footer>
+
+    <!-- Interactive JS logic -->
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // Dark/Light Mode Switcher State
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.getElementById('sun-icon').classList.remove('hidden');
+            document.getElementById('moon-icon').classList.add('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.getElementById('sun-icon').classList.add('hidden');
+            document.getElementById('moon-icon').classList.remove('hidden');
+        }
+
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            }
+        }
+
+        // Clip-board helper with custom Toast alerts
+        function copyText(textToCopy, label) {
+            const tempInput = document.createElement("input");
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand("copy");
+                showToast(`${label} copied to clipboard successfully!`);
+            } catch (err) {
+                showToast("Failed to copy automatically.");
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').innerText = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Interactive Recruiter Questions
+        const qnaResponses = {
+            q1: "Digistall's mission relies on introducing technology solutions to rural entrepreneurs. Having come from Gujarat and studied engineering at IIT Hyderabad while managing grassroots development events in NSS, I possess the direct cultural context, patience, and empathetic clarity needed to translate complex technologies into accessible, trust-building communication that resonates with rural communities.",
+            q2: "As an NSS Student Representative, I managed complex end-to-end event logistics and budgets worth several lakhs for major flagship EBSB programs. I led outreach initiatives impacting over 1,000 students directly, showing that I have structural planning, high attention to detail, and a deep-rooted focus on grassroots social development.",
+            q3: "As a Coordinator for the International Relations Cell at IIT Hyderabad, I act as a liaison for Japanese corporate delegates, international professors, and local academic stakeholders. This experience taught me how to bridge cross-cultural boundaries, communicate with absolute clarity, and manage complex stakeholder interests elegantly.",
+            q4: "My technical background (HTML/CSS, C++, Python) gives me an edge: I don't just speak 'PR copy'; I actually understand technology architecture. I can easily interface with engineering teams, translate product specs into human stories, and represent Digistall's tech with authentic authority."
+        };
+
+        function askQuestion(qKey) {
+            // Highlight active button
+            ['q1', 'q2', 'q3', 'q4'].forEach(key => {
+                const btn = document.getElementById(`btn-${key}`);
+                if (key === qKey) {
+                    btn.classList.add('border-accent-500', 'bg-primary-900/40');
+                } else {
+                    btn.classList.remove('border-accent-500', 'bg-primary-900/40');
+                }
+            });
+
+            // Display Response
+            document.getElementById('placeholder-text').classList.add('hidden');
+            const respDiv = document.getElementById('actual-response');
+            respDiv.classList.remove('hidden');
+            
+            const responseContent = document.getElementById('response-content');
+            responseContent.innerText = qnaResponses[qKey];
+        }
+
+        // Skills Filter Switcher
+        function filterSkills(category) {
+            // Active Tab UI change
+            ['all', 'pr', 'tech', 'core'].forEach(cat => {
+                const btn = document.getElementById(`tab-${cat}`);
+                if (cat === category) {
+                    btn.classList.add('bg-primary-600', 'text-white');
+                    btn.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
+                } else {
+                    btn.classList.remove('bg-primary-600', 'text-white');
+                    btn.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
+                }
+            });
+
+            // Filtering visibility logic
+            const categories = document.querySelectorAll('.skill-category');
+            categories.forEach(el => {
+                if (category === 'all' || el.getAttribute('data-cat') === category) {
+                    el.style.display = 'block';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+```
